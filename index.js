@@ -8,6 +8,11 @@
  */
 function trimProperties(obj) {
   // ✨ implement
+  const newObj = {};
+  for (let prop in obj) {
+    newObj[prop] = obj[prop].trim();
+  }
+  return newObj;
 }
 
 /**
@@ -20,6 +25,11 @@ function trimProperties(obj) {
  */
 function trimPropertiesMutation(obj) {
   // ✨ implement
+
+  for (let prop in obj) {
+    obj[prop] = obj[prop].trim();
+  }
+  return obj;
 }
 
 /**
@@ -32,6 +42,11 @@ function trimPropertiesMutation(obj) {
  */
 function findLargestInteger(integers) {
   // ✨ implement
+  let newArr = [];
+  for (let i = 0; i < integers.length; i++) {
+    newArr.push(integers[i].integer);
+  }
+  return Math.max(...newArr);
 }
 
 class Counter {
@@ -41,6 +56,7 @@ class Counter {
    */
   constructor(initialNumber) {
     // ✨ initialize whatever properties are needed
+    this.count = initialNumber;
   }
 
   /**
@@ -57,6 +73,12 @@ class Counter {
    */
   countDown() {
     // ✨ implement
+
+    if (this.count < 1) {
+      return 0;
+    } else {
+      return this.count--;
+    }
   }
 }
 
@@ -93,8 +115,8 @@ class Car {
    * @param {number} mpg - miles the car can drive per gallon of gas
    */
   constructor(name, tankSize, mpg) {
-    this.odometer = 0 // car initilizes with zero miles
-    this.tank = tankSize // car initiazes full of gas
+    this.odometer = 0; // car initilizes with zero miles
+    this.tank = tankSize; // car initiazes full of gas
     // ✨ initialize whatever other properties are needed
   }
 
@@ -156,4 +178,4 @@ module.exports = {
   Counter,
   Seasons,
   Car,
-}
+};
