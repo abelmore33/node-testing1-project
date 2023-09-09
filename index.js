@@ -87,6 +87,8 @@ class Seasons {
    * [Exercise 5A] Seasons creates a seasons object
    */
   constructor() {
+    this.season = ["summer", "fall", "winter", "spring"];
+    this.currentSeason = 0;
     // ✨ initialize whatever properties are needed
   }
 
@@ -104,6 +106,14 @@ class Seasons {
    */
   next() {
     // ✨ implement
+    const selectedSeason = this.season[this.currentSeason];
+
+    if (this.currentSeason === 3) {
+      this.currentSeason = 0;
+    } else {
+      this.currentSeason++;
+    }
+    return selectedSeason;
   }
 }
 
@@ -116,7 +126,10 @@ class Car {
    */
   constructor(name, tankSize, mpg) {
     this.odometer = 0; // car initilizes with zero miles
-    this.tank = tankSize; // car initiazes full of gas
+    this.tank = tankSize;
+    this.tankSize = tankSize;
+
+    this.mpg = mpg; // car initiazes full of gas
     // ✨ initialize whatever other properties are needed
   }
 
@@ -135,6 +148,17 @@ class Car {
    */
   drive(distance) {
     // ✨ implement
+    const range = this.tank * this.mpg;
+
+    if (distance <= range) {
+      this.odometer = this.odometer + distance;
+      this.tank = this.tank - distance / this.mpg;
+      return this.odometer;
+    } else {
+      this.tank = 0;
+      this.odometer = this.odometer + range;
+    }
+    return this.odometer;
   }
 
   /**
@@ -150,8 +174,20 @@ class Car {
    */
   refuel(gallons) {
     // ✨ implement
+
+    if (gallons <= this.tankSize - this.tank) {
+      this.tank = this.tank + gallons;
+    } else {
+      this.tank = this.tankSize;
+    }
+    return this.tank * this.mpg;
   }
 }
+const focus = new Car("focus", 20, 30);
+focus.drive(100);
+focus.drive(100);
+focus.drive(100);
+focus.drive(400);
 
 /**
  * [Exercise 7] Asynchronously resolves whether a number is even
@@ -168,6 +204,11 @@ class Car {
  */
 function isEvenNumberAsync(number) {
   // ✨ implement
+  if (number % 2 === 0) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 module.exports = {
